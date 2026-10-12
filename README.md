@@ -13,6 +13,16 @@
 - **U.S. DOT Form 41, Schedule P-6** (operating expenses by objective), 2024–2025, from BTS TranStats: 771 records for all U.S. carriers, filtered to 112 rows for the four airlines, converted from thousands to millions of USD.
 - **FY2025 Form 10-K** of each airline, for fuel gallons and the 10-K tie-out.
 
+## Method
+1. **Load:** combined the 2024 and 2025 Form 41 files into one Excel table (771 rows).
+2. **Clean:** filtered to UA, DL, AA and WN (112 rows), kept 12 cost columns, and converted thousands to millions with Paste Special → Divide.
+3. **Summarise with pivot tables:**
+   - **Summary pivot:** total operating expense by airline (rows) and year (columns), plus a second value field using *Show Values As → % Difference From (previous year)*, which showed United's costs grew fastest (+4.6%).
+   - **UA_Lines pivot:** United's 10 cost lines by year, using a report filter for the airline and Σ Values moved to rows. This showed salaries up $1,071M while fuel fell $390M.
+4. **Reconcile:** added a row-level check column and tied United's totals to its 10-K.
+5. **Variance analysis:** SUMIFS-driven table with a data-validation airline dropdown, showing $ change, % change and each line's share of the total increase.
+6. **Peer and fuel analysis:** compared cost growth across the four airlines and split fuel variance into price and volume effects.
+
 ## Workbook structure
 | Sheet | Purpose |
 |---|---|
@@ -34,3 +44,5 @@
 ![Variance](Images/variance.png)
 ![Peers](Images/peers.png)
 ![Fuel](Images/fuel.png)
+![Summary pivot: total cost by airline](Images/summary_pivot.png)
+![UA_Lines pivot: United cost lines](Images/ua_lines_pivot.png)
